@@ -6,8 +6,6 @@ This module provides drivers for General Purpose Input/Output (GPIO) devices (ht
 
 It must be used along with an adaptor module such as `intel-iot` (https://github.com/hybridgroup/cylon-intel-iot) that supports the needed interfaces for GPIO devices.
 
-[![Build Status](https://travis-ci.org/minggangw/cylon-ros-gpio.svg?branch=master)](http://travis-ci.org/minggangw/cylon-ros-gpio) [![Code Climate](https://codeclimate.com/github/minggangw/cylon-ros-gpio/badges/gpa.svg)](https://codeclimate.com/github/minggangw/cylon-ros-gpio) [![Test Coverage](https://codeclimate.com/github/minggangw/cylon-ros-gpio/badges/coverage.svg)](https://codeclimate.com/github/minggangw/cylon-ros-gpio/coverage)
-
 ## Getting Started
 Note you must install whichever adaptor you want to use, such as: `npm install cylon-intel-iot`. Also, you have to confirm below:
   * You have to become a superuser when executing node in order to WRITE in path `/sys/class/gpio`
