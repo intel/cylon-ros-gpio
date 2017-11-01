@@ -58,3 +58,6 @@ Cylon.robot({
   }
 }).start();
 ```
+
+To report a security issue, please follow the procedure described
+[here](https://01.org/security).
