@@ -16,10 +16,10 @@
 
 "use strict";
 
-var Motor = lib("motor");
+let Motor = lib("motor");
 
 describe("Motor", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new Motor({
@@ -36,17 +36,17 @@ describe("Motor", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new Motor({ name: "no-pin-motor" }); };
+        let fn = function() { return new Motor({ name: "no-pin-motor" }); };
         expect(fn).to.throw("No pin specified for Motor. Cannot proceed");
       });
     });
   });
 
   describe("#start", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -59,11 +59,11 @@ describe("Motor", function() {
   });
 
   describe("#halt", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.start(() => {
-        var callback = function() {
+        let callback = function() {
           spyCallback();
           done();
         };
@@ -84,8 +84,8 @@ describe("Motor", function() {
     });
 
     it("turn on Motor connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/turnOn_motor",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/turnOn_motor",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,
@@ -114,8 +114,8 @@ describe("Motor", function() {
     });
 
     it("turn off Motor connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/turnOff_motor",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/turnOff_motor",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,
@@ -141,8 +141,8 @@ describe("Motor", function() {
     });
 
     it("toggle Motor connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/toggle_motor",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/toggle_motor",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,
@@ -168,8 +168,8 @@ describe("Motor", function() {
     });
 
     it("set speed of motor", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/speed_motor",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/speed_motor",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,

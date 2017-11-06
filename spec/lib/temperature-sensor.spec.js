@@ -16,11 +16,11 @@
 
 "use strict";
 
-var TemperatureSensor = lib("temperature-sensor");
+let TemperatureSensor = lib("temperature-sensor");
 
 describe("TemperatureSensor", function() {
-  var driver;
-  var rosnodejs = require("rosnodejs");
+  let driver;
+  let rosnodejs = require("rosnodejs");
 
   beforeEach(function() {
     driver = new TemperatureSensor({
@@ -40,7 +40,7 @@ describe("TemperatureSensor", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new TemperatureSensor(
+        let fn = function() { return new TemperatureSensor(
             { name: "no-pin-temperature-sensor" }); };
         expect(fn).to.throw(
             "No pin specified for Analog Sensor. Cannot proceed");
@@ -50,7 +50,7 @@ describe("TemperatureSensor", function() {
 
   describe("read temperature", function() {
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         driver.connection.analogRead.yield(null, 512);
         done();
       };
@@ -58,7 +58,7 @@ describe("TemperatureSensor", function() {
     });
 
     it("read analog value", function(done) {
-      var readValue = stub();
+      let readValue = stub();
       rosnodejs.getNodeHandle().subscribe(
           "/celsius_temperature-sensor",
           "std_msgs/Int32",

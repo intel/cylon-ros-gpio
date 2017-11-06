@@ -16,10 +16,10 @@
 
 "use strict";
 
-var Servo = lib("servo");
+let Servo = lib("servo");
 
 describe("Servo", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new Servo({
@@ -36,17 +36,17 @@ describe("Servo", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new Servo({ name: "no-pin-servo" }); };
+        let fn = function() { return new Servo({ name: "no-pin-servo" }); };
         expect(fn).to.throw("No pin specified for Servo. Cannot proceed");
       });
     });
   });
 
   describe("#start", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -59,11 +59,11 @@ describe("Servo", function() {
   });
 
   describe("#halt", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.start(() => {
-        var callback = function() {
+        let callback = function() {
           spyCallback();
           done();
         };
@@ -85,8 +85,8 @@ describe("Servo", function() {
     });
 
     it("set angle of servo", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/angle_servo",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/angle_servo",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,

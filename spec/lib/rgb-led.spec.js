@@ -16,10 +16,10 @@
 
 "use strict";
 
-var RGBLed = lib("rgb-led");
+let RGBLed = lib("rgb-led");
 
 describe("RGBLed", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new RGBLed({
@@ -40,18 +40,18 @@ describe("RGBLed", function() {
 
     context("if no red pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new RGBLed({ name: "no-pin-rgb-led" }); };
-        var msg = "No red pin specified for RGB LED. Cannot proceed";
+        let fn = function() { return new RGBLed({ name: "no-pin-rgb-led" }); };
+        let msg = "No red pin specified for RGB LED. Cannot proceed";
         expect(fn).to.throw(msg);
       });
     });
   });
 
   describe("#start", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -64,11 +64,11 @@ describe("RGBLed", function() {
   });
 
   describe("#halt", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.start(() => {
-        var callback = function() {
+        let callback = function() {
           spyCallback();
           done();
         };
@@ -89,8 +89,8 @@ describe("RGBLed", function() {
     });
 
     it("turn on RGB LED", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/setRGB_rgb-led",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/setRGB_rgb-led",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,

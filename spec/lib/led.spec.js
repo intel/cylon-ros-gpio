@@ -16,10 +16,10 @@
 
 "use strict";
 
-var Led = lib("led");
+let Led = lib("led");
 
 describe("Led", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new Led({
@@ -36,17 +36,17 @@ describe("Led", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new Led({ name: "no-pin-led" }); };
+        let fn = function() { return new Led({ name: "no-pin-led" }); };
         expect(fn).to.throw("No pin specified for LED. Cannot proceed");
       });
     });
   });
 
   describe("#start", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -59,11 +59,11 @@ describe("Led", function() {
   });
 
   describe("#halt", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.start(() => {
-        var callback = function() {
+        let callback = function() {
           spyCallback();
           done();
         };
@@ -84,8 +84,8 @@ describe("Led", function() {
     });
 
     it("turn on LED connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/turnOn_led",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/turnOn_led",
           "std_msgs/String", {
               queueSize: 1,
               latching: true,
@@ -114,8 +114,8 @@ describe("Led", function() {
     });
 
     it("turn off LED connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/turnOff_led",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/turnOff_led",
           "std_msgs/String", {
               queueSize: 1,
               latching: true,
@@ -141,8 +141,8 @@ describe("Led", function() {
     });
 
     it("toggle LED connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/toggle_led",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/toggle_led",
           "std_msgs/String", {
               queueSize: 1,
               latching: true,
