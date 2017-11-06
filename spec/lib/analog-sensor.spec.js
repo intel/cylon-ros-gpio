@@ -16,10 +16,10 @@
 
 "use strict";
 
-var AnalogSensor = lib("analog-sensor");
+let AnalogSensor = lib("analog-sensor");
 
 describe("Analog Sensor", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new AnalogSensor({
@@ -38,7 +38,7 @@ describe("Analog Sensor", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new AnalogSensor(
+        let fn = function() { return new AnalogSensor(
             { name: "no-pin-analog-sensor" }); };
         expect(fn).to.throw(
             "No pin specified for Analog Sensor. Cannot proceed");
@@ -47,11 +47,11 @@ describe("Analog Sensor", function() {
   });
 
   describe("read the analog value", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.connection = { analogRead: stub() };
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -64,8 +64,8 @@ describe("Analog Sensor", function() {
       });
 
       it("read the value", function(done) {
-        var readValue = spy();
-        var rosnodejs = require("rosnodejs");
+        let readValue = spy();
+        let rosnodejs = require("rosnodejs");
         rosnodejs.getNodeHandle().subscribe("/upperLimit_analog-sensor",
             "std_msgs/Int32",
             (data) => { readValue(data.data); },
@@ -88,8 +88,8 @@ describe("Analog Sensor", function() {
       });
 
       it("read the value", function(done) {
-        var readValue = spy();
-        var rosnodejs = require("rosnodejs");
+        let readValue = spy();
+        let rosnodejs = require("rosnodejs");
         rosnodejs.getNodeHandle().subscribe("/lowerLimit_analog-sensor",
             "std_msgs/Int32",
             (data) => { readValue(data.data); },
@@ -112,8 +112,8 @@ describe("Analog Sensor", function() {
       });
 
       it("read the value", function(done) {
-        var readValue = spy();
-        var rosnodejs = require("rosnodejs");
+        let readValue = spy();
+        let rosnodejs = require("rosnodejs");
         rosnodejs.getNodeHandle().subscribe("/analogRead_analog-sensor",
             "std_msgs/Int32",
             (data) => { readValue(data.data); },

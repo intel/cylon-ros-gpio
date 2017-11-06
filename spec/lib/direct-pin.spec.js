@@ -16,11 +16,11 @@
 
 "use strict";
 
-var DirectPin = lib("direct-pin");
+let DirectPin = lib("direct-pin");
 
 describe("DirectPin", function() {
-  var driver;
-  var rosnodejs = require("rosnodejs");
+  let driver;
+  let rosnodejs = require("rosnodejs");
 
   beforeEach(function() {
     driver = new DirectPin({
@@ -40,7 +40,7 @@ describe("DirectPin", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new DirectPin(
+        let fn = function() { return new DirectPin(
             { name: "no-pin-direct-pin" }); };
         expect(fn).to.throw("No pin specified for Direct Pin. Cannot proceed");
       });
@@ -48,9 +48,9 @@ describe("DirectPin", function() {
   });
 
   describe("write/read the analog value", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -58,7 +58,7 @@ describe("DirectPin", function() {
     });
 
     it("write analog value", function(done) {
-      var pub = rosnodejs.getNodeHandle().advertise("/analogWrite_direct-pin",
+      let pub = rosnodejs.getNodeHandle().advertise("/analogWrite_direct-pin",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,
@@ -78,7 +78,7 @@ describe("DirectPin", function() {
 
     context("read analog value", function() {
       beforeEach(function(done) {
-        var pub = rosnodejs.getNodeHandle().advertise(
+        let pub = rosnodejs.getNodeHandle().advertise(
             "/analogRead_direct-pin",
             "std_msgs/Int32", {
                 queueSize: 1,
@@ -98,7 +98,7 @@ describe("DirectPin", function() {
       });
 
       it("read the value", function(done) {
-        var readValue = stub();
+        let readValue = stub();
         rosnodejs.getNodeHandle().subscribe(
             "/analogRead_direct-pin_result",
             "std_msgs/Int32",
@@ -123,9 +123,9 @@ describe("DirectPin", function() {
 
 
   describe("write/read the digital value", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -133,7 +133,7 @@ describe("DirectPin", function() {
     });
 
     it("write the value", function(done) {
-      var pub = rosnodejs.getNodeHandle().advertise(
+      let pub = rosnodejs.getNodeHandle().advertise(
           "/digitalWrite_direct-pin",
           "std_msgs/Int32", {
               queueSize: 1,
@@ -155,7 +155,7 @@ describe("DirectPin", function() {
 
     context("read digital value", function() {
       beforeEach(function(done) {
-        var pub = rosnodejs.getNodeHandle().advertise(
+        let pub = rosnodejs.getNodeHandle().advertise(
             "/digitalRead_direct-pin",
             "std_msgs/Int32", {
                 queueSize: 1,
@@ -174,7 +174,7 @@ describe("DirectPin", function() {
       });
 
       it("read the value", function(done) {
-        var readValue = stub();
+        let readValue = stub();
         rosnodejs.getNodeHandle().subscribe(
             "/digitalRead_direct-pin_result",
             "std_msgs/Int32",
@@ -198,10 +198,10 @@ describe("DirectPin", function() {
   });
 
   describe("write pwm value", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -209,7 +209,7 @@ describe("DirectPin", function() {
     });
 
     it("write the value", function(done) {
-      var pub = rosnodejs.getNodeHandle().advertise("/pwmWrite_direct-pin",
+      let pub = rosnodejs.getNodeHandle().advertise("/pwmWrite_direct-pin",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,
@@ -234,9 +234,9 @@ describe("DirectPin", function() {
   });
 
   describe("write servo value", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -244,7 +244,7 @@ describe("DirectPin", function() {
     });
 
     it("write the value", function(done) {
-      var pub = rosnodejs.getNodeHandle().advertise("/servoWrite_direct-pin",
+      let pub = rosnodejs.getNodeHandle().advertise("/servoWrite_direct-pin",
           "std_msgs/Int32", {
               queueSize: 1,
               latching: true,

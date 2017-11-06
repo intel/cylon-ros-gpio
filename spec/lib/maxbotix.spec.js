@@ -16,10 +16,10 @@
 
 "use strict";
 
-var Maxbotix = lib("maxbotix");
+let Maxbotix = lib("maxbotix");
 
 describe("Maxbotix", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new Maxbotix({
@@ -36,7 +36,7 @@ describe("Maxbotix", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() {
+        let fn = function() {
             return new Maxbotix({ name: "no-pin-maxbotix" }); };
         expect(fn).to.throw("No pin specified for Maxbotix. Cannot proceed");
       });
@@ -44,11 +44,11 @@ describe("Maxbotix", function() {
   });
 
   describe("maxbotix range/rangeCm", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.connection = { analogRead: stub() };
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -61,9 +61,9 @@ describe("Maxbotix", function() {
       });
 
       it("range/rangeCm", function(done) {
-        var range = spy();
-        var rangeCm = spy();
-        var rosnodejs = require("rosnodejs");
+        let range = spy();
+        let rangeCm = spy();
+        let rosnodejs = require("rosnodejs");
 
         rosnodejs.getNodeHandle().subscribe("/range_maxbotix",
             "std_msgs/Float32",

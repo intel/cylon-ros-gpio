@@ -16,10 +16,10 @@
 
 "use strict";
 
-var ContinuousServo = lib("continuous-servo");
+let ContinuousServo = lib("continuous-servo");
 
 describe("Continuous Servo", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new ContinuousServo({
@@ -36,7 +36,7 @@ describe("Continuous Servo", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() {
+        let fn = function() {
           return new ContinuousServo({ name: "no-pin-servo" });
         };
         expect(fn).to.throw(
@@ -46,10 +46,10 @@ describe("Continuous Servo", function() {
   });
 
   describe("#start", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -62,11 +62,11 @@ describe("Continuous Servo", function() {
   });
 
   describe("#halt", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.start(() => {
-        var callback = function() {
+        let callback = function() {
           spyCallback();
           done();
         };
@@ -89,8 +89,8 @@ describe("Continuous Servo", function() {
     it("clockwise", function(done) {
       stub(driver, "_rotate");
 
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise(
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise(
           "/clockwise_continuous-servo",
           "std_msgs/String", {
               queueSize: 1,
@@ -112,8 +112,8 @@ describe("Continuous Servo", function() {
     it("counter clockwise", function(done) {
       stub(driver, "_rotate");
 
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise(
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise(
           "/counter_clockwise_continuous-servo",
           "std_msgs/String", {
               queueSize: 1,
@@ -135,8 +135,8 @@ describe("Continuous Servo", function() {
     it("stop", function(done) {
       stub(driver, "_rotate");
 
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise(
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise(
           "/stop_continuous-servo",
           "std_msgs/String", {
               queueSize: 1,

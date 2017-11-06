@@ -16,10 +16,10 @@
 
 "use strict";
 
-var Relay = lib("relay");
+let Relay = lib("relay");
 
 describe("Relay", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new Relay({
@@ -36,17 +36,17 @@ describe("Relay", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new Relay({ name: "no-pin-relay" }); };
+        let fn = function() { return new Relay({ name: "no-pin-relay" }); };
         expect(fn).to.throw("No pin specified for Relay. Cannot proceed");
       });
     });
   });
 
   describe("#start", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -59,11 +59,11 @@ describe("Relay", function() {
   });
 
   describe("#halt", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.start(() => {
-        var callback = function() {
+        let callback = function() {
           spyCallback();
           done();
         };
@@ -84,8 +84,8 @@ describe("Relay", function() {
     });
 
     it("turn on Relay connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/turnOn_relay",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/turnOn_relay",
           "std_msgs/String", {
               queueSize: 1,
               latching: true,
@@ -114,8 +114,8 @@ describe("Relay", function() {
     });
 
     it("turn off Relay connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/turnOff_relay",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/turnOff_relay",
           "std_msgs/String", {
               queueSize: 1,
               latching: true,
@@ -141,8 +141,8 @@ describe("Relay", function() {
     });
 
     it("toggle Relay connected to pin 22", function(done) {
-      var rosnodejs = require("rosnodejs");
-      var pub = rosnodejs.getNodeHandle().advertise("/toggle_relay",
+      let rosnodejs = require("rosnodejs");
+      let pub = rosnodejs.getNodeHandle().advertise("/toggle_relay",
           "std_msgs/String", {
               queueSize: 1,
               latching: true,

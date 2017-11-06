@@ -16,10 +16,10 @@
 
 "use strict";
 
-var Button = lib("button");
+let Button = lib("button");
 
 describe("Button", function() {
-  var driver;
+  let driver;
 
   beforeEach(function() {
     driver = new Button({
@@ -36,18 +36,18 @@ describe("Button", function() {
 
     context("if no pin is specified", function() {
       it("throws an error", function() {
-        var fn = function() { return new Button({ name: "no-pin-button" }); };
+        let fn = function() { return new Button({ name: "no-pin-button" }); };
         expect(fn).to.throw("No pin specified for Button. Cannot proceed");
       });
     });
   });
 
   describe("on the 'pressed & released' event", function() {
-    var spyCallback = spy();
+    let spyCallback = spy();
 
     beforeEach(function(done) {
       driver.connection = { digitalRead: stub() };
-      var callback = function() {
+      let callback = function() {
         spyCallback();
         done();
       };
@@ -60,8 +60,8 @@ describe("Button", function() {
       });
 
       it("publish topic 'pressed_button' when first pressed", function(done) {
-        var pressed = spy();
-        var rosnodejs = require("rosnodejs");
+        let pressed = spy();
+        let rosnodejs = require("rosnodejs");
         rosnodejs.getNodeHandle().subscribe("/pressed_button",
             "std_msgs/Bool",
             (data) => { pressed(data.data); },
@@ -84,8 +84,8 @@ describe("Button", function() {
       });
 
       it("publish topic 'pressed_button' when first released", function(done) {
-        var pressed = spy();
-        var rosnodejs = require("rosnodejs");
+        let pressed = spy();
+        let rosnodejs = require("rosnodejs");
         rosnodejs.getNodeHandle().subscribe("/pressed_button",
             "std_msgs/Bool",
             (data) => { pressed(data.data); },
